@@ -22,7 +22,7 @@ public class Dev {
     // Método responsável por registrar os conteudos que forem realizados no set de conteudosConcluidos
     public void progredir(){
 
-        Optional<Conteudo> conteudo = this.conteudosConcluidos.stream().findFirst();
+        Optional<Conteudo> conteudo = this.conteudosInscritos.stream().findFirst();
 
         if (conteudo.isPresent()){
 
