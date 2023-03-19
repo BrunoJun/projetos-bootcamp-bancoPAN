@@ -2,6 +2,7 @@ package org.me.desafio.dominio;
 
 import java.util.LinkedHashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 public class Dev {
@@ -14,19 +15,29 @@ public class Dev {
     // Método responsável pela inscrição de um dev em um bootcamp e inicializar o Set de conteudosInscritos
     public void inscreverBootcamp(Bootcamp bootcamp){
 
-
+        this.conteudosInscritos.addAll(bootcamp.getConteudos());
+        bootcamp.getDevsInscritos().add(this);
     }
 
     // Método responsável por registrar os conteudos que forem realizados no set de conteudosConcluidos
     public void progredir(){
 
+        Optional<Conteudo> conteudo = this.conteudosConcluidos.stream().findFirst();
 
+        if (conteudo.isPresent()){
+
+            this.conteudosConcluidos.add(conteudo.get());
+            this.conteudosInscritos.remove(conteudo.get());
+        } else {
+
+            System.err.println("Você não está matriculado em nenhum conteúdo");
+        }
     }
 
     // Método responsável por retornar o total de xp de acordo com a progressão atual do dev no bootcamp
-    public void calcularTotalXP(){
+    public double calcularTotalXP(){
 
-
+        return this.conteudosConcluidos.stream().mapToDouble(conteudo -> conteudo.calcularXP()).sum();
     }
 
     // Getters e Setters
