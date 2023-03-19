@@ -2,36 +2,15 @@ package org.me.desafio.dominio;
 
 import java.time.LocalDate;
 
-public class Mentoria {
+public class Mentoria extends Conteudo{
 
     // Atributos referente a classe Mentoria
-    private String titulo, descricao;
     private LocalDate data;
 
     // Construtor padrão
     public Mentoria() {}
 
     // Getters e Setters
-    public String getTitulo() {
-
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-
-        this.titulo = titulo;
-    }
-
-    public String getDescricao() {
-
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-
-        this.descricao = descricao;
-    }
-
     public LocalDate getData() {
 
         return data;
@@ -46,9 +25,16 @@ public class Mentoria {
     @Override
     public String toString() {
         return "Mentoria{" +
-                "titulo='" + titulo + '\'' +
-                ", descricao='" + descricao + '\'' +
+                "titulo='" + getTitulo() + '\'' +
+                ", descricao='" + getDescricao() + '\'' +
                 ", data=" + data +
                 '}';
+    }
+
+    // Implementando o método abstrato herdado da classe Conteudo
+    @Override
+    public double calcularXP() {
+
+        return XP_PADRAO + 20;
     }
 }
